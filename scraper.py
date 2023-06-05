@@ -1,11 +1,19 @@
-import requests 
+import requests
 from bs4 import BeautifulSoup
 
-response = requests.get('https://github.com/trending/python?since=daily')
+# Make a request to the website
+r = requests.get("https://en.wikipedia.org/wiki/Main_Page")
+r.content
 
-soup = BeautifulSoup(response.text, 'html.parser')
+# Use the 'html.parser' to parse the page
+soup = BeautifulSoup(r.content, 'html.parser')
 
-repo_list = soup.find_all('h1', {'class': 'h3 lh-condensed'})
+# Extract title of the page
+page_title = soup.find('title')
+print(f"Page Title: {page_title.text}")  # .text will return the text between the tags
 
-for repo in repo_list:
-    print(repo.text.strip())
+# Extract main heading of the page
+main_heading = soup.find('h1')
+print(f"Main Heading: {main_heading.text}")
+
+# Note: .text will return the text between the tags
