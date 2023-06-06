@@ -1,3 +1,5 @@
+import sys
+print(sys.version)
 import requests
 from bs4 import BeautifulSoup
 
